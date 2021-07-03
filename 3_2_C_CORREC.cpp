@@ -60,13 +60,13 @@ void showWordsOf(ifstream file)
     cout << "Promedio de palabras por línea " << averageOfWords << endl;
 }
 
-void closeFile(string path)
+void closeFile(ifstream file)
 {
-    ifstream out;
-    if (!out.eof())
+    
+    if (file.is_open())
     {
-        out.close();
-        cout <<"El archivo se cerro satisfactoriamente"<< endl;
+        file.close();
+        cout << "El archivo se cerro satisfactoriamente.";
     }
     
 }
@@ -74,7 +74,7 @@ void closeFile(string path)
 int main()
 {
     showWordsOf(openFile("QuotesOfBjarne.txt"));
-    closeFile("QuotesOfBjarne.txt");
+    closeFile(openFile("QuotesOfBjarne.txt"));
     cin.ignore();
     cin.get();
     return 0;
