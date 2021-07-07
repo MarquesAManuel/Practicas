@@ -11,7 +11,7 @@ using namespace std;
 ifstream openFile(string path)
 {
     ifstream in;
-    in.open("QuotesOfBjarne.txt");
+    in.open(path);
 
     if (!in) 
     {
@@ -22,7 +22,7 @@ ifstream openFile(string path)
     return in;
 }
 
-void showQuotesOf(ifstream file)
+void showQuotesOf(ifstream& file)
 {
     while (!file.eof())
     {
@@ -32,21 +32,22 @@ void showQuotesOf(ifstream file)
         cout << endl;
     }
 }
-void closeFile(ifstream file)
+void closeFile(ifstream& file)
 {
     
     if (file.is_open())
     {
         file.close();
-        cout << "El archivo se cerro satisfactoriamente.";
+        cout << "El archivo se cerro satisfactoriamente." << endl;
     }
     
 }
 
 int main()
 {
-    showQuotesOf(openFile("QuotesOfBjarne.txt"));
-    closeFile(openFile("QuotesOfBjarne.txt"));
+    ifstream textFile = openFile("QuotesOfBjarne.txt");
+    showQuotesOf(textFile);
+    closeFile(textFile);
     cin.ignore();
     cin.get();
     return 0;

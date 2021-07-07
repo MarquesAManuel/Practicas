@@ -12,7 +12,7 @@ using namespace std;
 ifstream openFile(string path)
 {
     ifstream in;
-    in.open("QuotesOfBjarne.txt");
+    in.open(path);
 
     if (!in)
     {
@@ -39,7 +39,7 @@ int countWords(string sentence)
     return counter;
 }
 
-void showWordsOf(ifstream file)
+void showWordsOf(ifstream& file)
 {
     int sentecesNumber = 0;
     int totalWords = 0;
@@ -60,7 +60,7 @@ void showWordsOf(ifstream file)
     cout << "Promedio de palabras por línea " << averageOfWords << endl;
 }
 
-void closeFile(ifstream file)
+void closeFile(ifstream& file)
 {
     
     if (file.is_open())
@@ -73,8 +73,9 @@ void closeFile(ifstream file)
 
 int main()
 {
-    showWordsOf(openFile("QuotesOfBjarne.txt"));
-    closeFile(openFile("QuotesOfBjarne.txt"));
+    ifstream textFile = openFile("QuotesOfBjarne.txt");
+    showWordsOf(textFile);
+    closeFile(textFile);
     cin.ignore();
     cin.get();
     return 0;
