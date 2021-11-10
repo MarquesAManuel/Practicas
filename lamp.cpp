@@ -8,6 +8,7 @@ class Lampara
         /* data */
         bool estado;// true encendido, false apagado
         int intensidad;
+        int usos;
     public:
         Lampara(/* args */);
         ~Lampara();
@@ -17,12 +18,14 @@ class Lampara
         void atenuar();
         bool obtenerEstado();
         int obtenerIntensidad();
+        int obtenerUsos();
 };
 
 Lampara::Lampara(/* args */)
 {
     estado = false;
     intensidad = 0;
+    usos = 100;
 }
 
 Lampara::~Lampara()
@@ -37,6 +40,7 @@ void Lampara::encender()
 void Lampara::apagar() 
 {
     estado = false;
+    --usos;
 }
 
 void Lampara::intensificar() 
@@ -59,16 +63,23 @@ int Lampara::obtenerIntensidad()
     return intensidad;    
 }
 
+int Lampara::obtenerUsos() 
+{
+    return usos;    
+}
+
 
 int main()
 {
     Lampara* osram = new Lampara;
     cout << "El estado inicial es: " << osram->obtenerEstado() << endl;
     cout << "La intensidad inicial es: " << osram->obtenerIntensidad() << endl;
+    cout << "La cantidad de usos inical es: " << osram->obtenerUsos() << endl;
 
     osram->encender();
     cout << "El estado es: " << osram->obtenerEstado() << endl;
     cout << "La intensidad es: " << osram->obtenerIntensidad() << endl;
+    cout << "La cantidad de usos restantes es de: " << osram->obtenerUsos() << endl;
     
     osram->intensificar();
     cout << "La intensidad es: " << osram->obtenerIntensidad() << endl;
@@ -81,6 +92,7 @@ int main()
    
     osram->apagar();
     cout << "El estado es: " << osram->obtenerEstado() << endl;
+    cout << "La cantidad de usos restantes es de: " << osram->obtenerUsos() << endl;
 
     delete osram;
     return 0;
